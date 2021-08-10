@@ -120,7 +120,7 @@ export default declare(`${widgetConf.name}.widget.${widgetConf.name}`, [_widgetB
         options.onChange = $.proxy(this._setCroppingCoordinates, this);
         options.onRelease = $.proxy(this._setCroppingCoordinates, this);
         options.setSelect = [0, 0, this.startwidth, this.startheight];
-        options.boxWidth = this.cropwidth;
+        options.boxWidth = this.domNode.parentNode.clientWidth;
         options.boxHeight = this.cropheight;
 
         return options;
