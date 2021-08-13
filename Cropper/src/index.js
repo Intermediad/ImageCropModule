@@ -119,8 +119,19 @@ export default declare(`${widgetConf.name}.widget.${widgetConf.name}`, [_widgetB
         options.onSelect = $.proxy(this._setCroppingCoordinates, this);
         options.onChange = $.proxy(this._setCroppingCoordinates, this);
         options.onRelease = $.proxy(this._setCroppingCoordinates, this);
-        options.setSelect = [0, 0, this.startwidth, this.startheight];
-        options.boxWidth = this.cropwidth;
+
+        var selectWidth = this._contextObject._getAttributeValue('crop_start_width');
+        var selectHeight = this._contextObject._getAttributeValue('crop_start_height');
+
+        if (selectHeight == null) {
+            selectHeight = this.startheight;
+        }
+        if (selectWidth == null) {
+            selectWidth = this.startwidth;
+        }
+        
+        options.setSelect = [0, 0, selectWidth, selectHeight];
+        options.boxWidth = this.domNode.parentNode.clientWidth;
         options.boxHeight = this.cropheight;
 
         return options;
